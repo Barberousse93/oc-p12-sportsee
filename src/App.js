@@ -1,16 +1,16 @@
 import React from 'react'
 import './App.css'
-import styled from 'styled-components'
-
-const Test = styled.h1`
-  color: blue;
-`
+import Router from './utils/Router.jsx'
+import Header from './components/Header.jsx'
+import LateralBar from './components/LateralBar.jsx'
 
 function App() {
+  
   return (
     <div className="App">
-      <Test>Hello World !</Test>
-      <h2>Ready to code ?</h2>
+      <Header/>      
+      <Router />
+      <LateralBar/>
     </div>
   )
 }

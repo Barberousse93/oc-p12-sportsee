@@ -4,3 +4,9 @@
   box-sizing: border-box;
   font-family: 'Roboto',sans-serif;
 }
+
+body{
+  width: 1440px;
+  height: 780px;
+  margin: auto;
+}
