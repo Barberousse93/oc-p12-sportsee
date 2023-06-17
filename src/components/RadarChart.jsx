@@ -1,6 +1,15 @@
 import React from 'react'
 import { useParams } from 'react-router'
 import { useFetch } from '../utils/Hooks/index.jsx'
+import Loader from '../utils/Loader.jsx'
+import {
+  PolarGrid,
+  RadarChart,
+  // PolarRadiusAxis,
+  PolarAngleAxis,
+  Radar,
+  Tooltip,
+} from 'recharts'
 
 const dicoAnglaisFrancais = {
   1: { categorie: 'Cardio' },
@@ -11,7 +20,7 @@ const dicoAnglaisFrancais = {
   6: { categorie: 'Intensité' },
 }
 
-function RadarChart() {
+function compRadarChart() {
   const { ID } = useParams()
   const { data, isLoading, isError } = useFetch(
     `http://localhost:3000/user/${ID}/performance`
@@ -21,25 +30,58 @@ function RadarChart() {
     return <h1>Oups !! Il y a eu un problème...</h1>
   }
 
-  // console.log('data', data)
-
   const ActivityData = { ...data.data }
-  console.log('ActivityData', ActivityData)
 
-  Object.entries(ActivityData).map((item) => {
-    console.log('Avant : ', item[1].kind, item[1].value)
-    item[1].kind = dicoAnglaisFrancais[item[1].kind].categorie
-    console.log('Après : ', item[1].kind, item[1].value)
+  Object.entries(ActivityData).map((item, index) => {
+    item[1].kind = dicoAnglaisFrancais[index + 1].categorie
   })
 
-  console.log('ActivityData', ActivityData)
+  // console.log('ActivityData', ActivityData)
+
+  let RadarData = []
+  Object.entries(ActivityData).map((item) => {
+    // console.log('item', item)
+    RadarData.push(item[1])
+    // console.log('RadarData', RadarData)
+    return RadarData
+  })
 
   return (
     <div>
-      {isLoading}
-      {/* {RadarData[0].kind} */}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <RadarChart
+            outerRadius={90}
+            width={260}
+            height={260}
+            data={RadarData}
+            style={{
+              color: '#000',
+              backgroundColor: '#F00',
+              borderRadius: '5px',
+            }}
+          >
+            <PolarGrid />
+            <PolarAngleAxis
+              dataKey="kind"
+              style={{ fontSize: '10px', color: '#FFF' }}
+            />
+            {/* <PolarRadiusAxis angle={30} domain={[0, 200]} /> */}
+            <Radar
+              name="Valeur"
+              dataKey="value"
+              stroke="#green"
+              fillOpacity={0.6}
+              style={{ fontSize: 12, fontWeight: 'bold', fill: 'blue' }}
+            />
+            <Tooltip />
+          </RadarChart>
+        </>
+      )}
     </div>
   )
 }
 
-export default RadarChart
+export default compRadarChart
