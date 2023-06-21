@@ -15,6 +15,7 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 `
 const Valeurs = styled.div`
   display: flex;

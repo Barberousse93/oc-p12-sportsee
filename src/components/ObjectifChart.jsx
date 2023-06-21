@@ -6,30 +6,33 @@ import colors from '../utils/colors.jsx'
 // const data01 = [{ value: 50 }]
 
 const Container = styled.div`
-  position: absolute;
+  // position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  justify-self: center;
   width: 260px;
   height: 260px;
-  top: 0;
-  left: 150px;
+  // top: 350px;
+  // left: 150px;
   background-color: ${colors.backGroundComponents};
   border-radius: 5px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  grid-column: 3;
+  grid-row: 2;
 `
 
 const Legende = styled.div`
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-  // height: 100%;
+  position: absolute;
+  width: 260px;
+  height: 260px;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
+  align-content: center;
   justify-content: center;
-  // background-color:#fff;
-  // border-radius:50%;
-  // width:100px;
-  // height:100px;
   z-index: 1;
 `
 
@@ -45,9 +48,9 @@ const LegendeText = styled.p`
   color: ${colors.ligthText};
 `
 const Score = styled.h2`
-  position: absolute;
-  top: -90px;
-  left: 15px;
+  position: relative;
+  top: -85px;
+  left: -100px;
   font-size: 15px;
   font-weight: 500;
   color: ${colors.textOnClear};
@@ -62,7 +65,7 @@ function ObjectifChart(data) {
         <LegendeValeur>{data.score}%</LegendeValeur>
         <LegendeText>de votre objectif</LegendeText>
       </Legende>
-      <PieChart width={260} height={260} style={{ top: '-20%' }}>
+      <PieChart width={260} height={260}>
         <Pie
           data={[{ value: 100 }]}
           cx="50%"

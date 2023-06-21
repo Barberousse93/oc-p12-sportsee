@@ -7,19 +7,25 @@ import colors from '../utils/colors.jsx'
 import AverageCard from '../components/AverageCard.jsx'
 import ObjectifChart from '../components/ObjectifChart.jsx'
 import RadarChart from '../components/RadarChart.jsx'
+import AverageChart from '../components/AverageChart.jsx'
+import ActivityChart from '../components/ActivityChart.jsx'
 
 const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
-  // left: 158px;
   height: calc(1024px - 91px);
 `
 const DashBoard = styled.div`
   position: relative;
+  width: calc(100% - 171px);
   height: 775px;
   top: 100px;
+  right: -171px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 `
 
 const StyledH1 = styled.h1`
@@ -35,14 +41,13 @@ const StyledFirstName = styled.span`
   color: ${colors.secondary};
 `
 const StyledUL = styled.ul`
-  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-around;
+  justify-content: space-between;
   position: relative;
   height: 100%;
-  margin-right: 30px;
+  grid-column: 4;
+  grid-row: 1/3;
 `
 const StyledLI = styled.li`
   list-style: none;
@@ -82,6 +87,8 @@ function Resultats() {
             </StyledUL>
             <ObjectifChart score={todayScore} />
             <RadarChart />
+            <AverageChart />
+            <ActivityChart />
           </DashBoard>
         </>
       )}

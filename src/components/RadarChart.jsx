@@ -2,14 +2,22 @@ import React from 'react'
 import { useParams } from 'react-router'
 import { useFetch } from '../utils/Hooks/index.jsx'
 import Loader from '../utils/Loader.jsx'
-import {
-  PolarGrid,
-  RadarChart,
-  // PolarRadiusAxis,
-  PolarAngleAxis,
-  Radar,
-  Tooltip,
-} from 'recharts'
+import { PolarGrid, RadarChart, PolarAngleAxis, Radar } from 'recharts'
+import colors from '../utils/colors.jsx'
+import styled from 'styled-components'
+
+const Container = styled.div`
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  width: 260px;
+  height: 260px;
+  background-color: ${colors.backGroundComponents};
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  grid-column: 2;
+  grid-row: 2;
+`
 
 const dicoAnglaisFrancais = {
   1: { categorie: 'Cardio' },
@@ -31,56 +39,52 @@ function compRadarChart() {
   }
 
   const ActivityData = { ...data.data }
+  // const ActivityData = JSON.parse(JSON.stringify(data.data))
 
   Object.entries(ActivityData).map((item, index) => {
     item[1].kind = dicoAnglaisFrancais[index + 1].categorie
   })
 
-  // console.log('ActivityData', ActivityData)
-
   let RadarData = []
   Object.entries(ActivityData).map((item) => {
-    // console.log('item', item)
     RadarData.push(item[1])
-    // console.log('RadarData', RadarData)
     return RadarData
   })
 
   return (
-    <div>
+    <Container>
       {isLoading ? (
         <Loader />
       ) : (
-        <>
+        <div>
           <RadarChart
-            outerRadius={90}
+            outerRadius={80}
             width={260}
             height={260}
             data={RadarData}
             style={{
               color: '#000',
-              backgroundColor: '#F00',
+              backgroundColor: colors.textOnClear,
               borderRadius: '5px',
             }}
           >
             <PolarGrid />
             <PolarAngleAxis
               dataKey="kind"
-              style={{ fontSize: '10px', color: '#FFF' }}
+              tick={{ fontSize: '12px', fontWeigth: 500, fill: '#FFF' }}
             />
-            {/* <PolarRadiusAxis angle={30} domain={[0, 200]} /> */}
             <Radar
-              name="Valeur"
+              name="Performance"
               dataKey="value"
-              stroke="#green"
-              fillOpacity={0.6}
-              style={{ fontSize: 12, fontWeight: 'bold', fill: 'blue' }}
+              fillOpacity={0.7}
+              style={{
+                fill: colors.secondary,
+              }}
             />
-            <Tooltip />
           </RadarChart>
-        </>
+        </div>
       )}
-    </div>
+    </Container>
   )
 }
 
