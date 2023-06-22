@@ -28,27 +28,25 @@ const dicoAnglaisFrancais = {
   6: { categorie: 'Intensité' },
 }
 
-function compRadarChart() {
+function compRadarChart({ Mock }) {
   const { ID } = useParams()
   const { data, isLoading, isError } = useFetch(
-    `http://localhost:3000/user/${ID}/performance`
+    Mock
+      ? `http://localhost:3001/datas/performance.json`
+      : `http://localhost:3000/user/${ID}/performance`
   )
 
   if (isError) {
     return <h1>Oups !! Il y a eu un problème...</h1>
   }
 
-  const ActivityData = { ...data.data }
-  // const ActivityData = JSON.parse(JSON.stringify(data.data))
+  if (!data) return
 
-  Object.entries(ActivityData).map((item, index) => {
-    item[1].kind = dicoAnglaisFrancais[index + 1].categorie
-  })
+  const ActivityData =
+    data && data.data ? JSON.parse(JSON.stringify(data.data)) : []
 
-  let RadarData = []
-  Object.entries(ActivityData).map((item) => {
-    RadarData.push(item[1])
-    return RadarData
+  ActivityData.map((item) => {
+    item.kind = dicoAnglaisFrancais[item.kind].categorie
   })
 
   return (
@@ -61,7 +59,8 @@ function compRadarChart() {
             outerRadius={80}
             width={260}
             height={260}
-            data={RadarData}
+            cx={'48%'} // ????
+            data={ActivityData}
             style={{
               color: '#000',
               backgroundColor: colors.textOnClear,
@@ -79,7 +78,9 @@ function compRadarChart() {
               fillOpacity={0.7}
               style={{
                 fill: colors.secondary,
+                stroke: colors.primary,
               }}
+              margin={{ left: 5, right: 5 }}
             />
           </RadarChart>
         </div>

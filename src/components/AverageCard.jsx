@@ -62,30 +62,6 @@ function AverageCard(donnees) {
     },
   }
 
-  // switch (donnees.compteur) {
-  //   case 'calorieCount':
-  //     icone = calories
-  //     unite = 'kCal'
-  //     legende = 'Calories'
-  //     break
-  //   case 'proteinCount':
-  //     icone = proteines
-  //     unite = 'g'
-  //     legende = 'Proteines'
-  //     break
-  //   case 'carbohydrateCount':
-  //     icone = glucides
-  //     unite = 'g'
-  //     legende = 'Glucides'
-  //     break
-  //   case 'lipidCount':
-  //     icone = lipides
-  //     unite = 'g'
-  //     legende = 'Lipides'
-  //     break
-  //   default:
-  //     break
-  // }
   return (
     <Container>
       <Icone src={dico[donnees.compteur].icone} alt="" />

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router'
+import { useParams, useNavigate } from 'react-router'
 import Loader from '../utils/Loader.jsx'
 import { useFetch } from '../utils/Hooks/index.jsx'
 import styled from 'styled-components'
@@ -9,6 +9,9 @@ import ObjectifChart from '../components/ObjectifChart.jsx'
 import RadarChart from '../components/RadarChart.jsx'
 import AverageChart from '../components/AverageChart.jsx'
 import ActivityChart from '../components/ActivityChart.jsx'
+
+// Passer à 'true' pour utiliser les données mockées
+const Mock = false
 
 const Container = styled.div`
   position: relative;
@@ -56,12 +59,16 @@ const StyledLI = styled.li`
 function Resultats() {
   const { ID } = useParams()
 
+  const navigate = useNavigate()
+
   const { data, isLoading, isError } = useFetch(
-    `http://localhost:3000/user/${ID}`
+    Mock
+      ? `http://localhost:3001/datas/user.json`
+      : `http://localhost:3000/user/${ID}`
   )
 
-  if (isError) {
-    return <h1>Oups !! Il y a eu un problème...</h1>
+  if (isError || !data) {
+    navigate('/error')
   }
 
   const compteur = data.keyData
@@ -86,9 +93,9 @@ function Resultats() {
               ))}
             </StyledUL>
             <ObjectifChart score={todayScore} />
-            <RadarChart />
-            <AverageChart />
-            <ActivityChart />
+            <RadarChart Mock={Mock} />
+            <AverageChart Mock={Mock} />
+            <ActivityChart Mock={Mock} />
           </DashBoard>
         </>
       )}

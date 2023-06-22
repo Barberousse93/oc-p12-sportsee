@@ -11,7 +11,7 @@ function Router() {
       <Route path="/" element={<Menu />}></Route>
       <Route path="/resultats/:ID" element={<Resultats />}></Route>
       <Route path="/WIP" element={<WIP />}></Route>
-      {/* <Route path="/error" element={<Erreur404 />}></Route>*/}
+      <Route path="/error" element={<Erreur404 />}></Route>
       <Route path="*" element={<Erreur404 />}></Route>
     </Routes>
   )

@@ -35,13 +35,11 @@ const CustomTooTip = styled.div`
   padding: 10px;
   border-radius: 5px;
 `
-
 const CustomTooTipLabel = styled.p`
   font-size: 10px;
   font-weight: 500;
   color: ${colors.textOnClear};
 `
-
 const transcriptionJour = {
   1: { jour: 'L' },
   2: { jour: 'M' },
@@ -52,27 +50,32 @@ const transcriptionJour = {
   7: { jour: 'D' },
 }
 
-function AverageChart() {
+function AverageChart({ Mock }) {
   const { ID } = useParams()
   const { data, isLoading, isError } = useFetch(
-    `http://localhost:3000/user/${ID}/average-sessions`
+    Mock
+      ? `http://localhost:3001/datas/average.json`
+      : `http://localhost:3000/user/${ID}/average-sessions`
   )
 
   if (isError) {
     return <h1>Oups !! Il y a eu un problème...</h1>
   }
 
-  const Datas = { ...data.sessions }
+  if (!data) return
 
-  Object.entries(Datas).map((item, index) => {
-    item[1].day = transcriptionJour[index + 1].jour
+  const Datas =
+    data && data.sessions ? JSON.parse(JSON.stringify(data.sessions)) : []
+
+  Datas.map((item) => {
+    item.day = transcriptionJour[item.day].jour
   })
 
   const ToolTipPerso = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
         <CustomTooTip>
-          <CustomTooTipLabel>{`${payload[0].payload.sessionLength} min`}</CustomTooTipLabel>
+          <CustomTooTipLabel>{`${payload[0].payload.sessionLength}min`}</CustomTooTipLabel>
           {payload[0].payload.sessionLength === 0 ? (
             <CustomTooTipLabel>Ben alors ? Un oubli ??</CustomTooTipLabel>
           ) : null}
@@ -109,7 +112,6 @@ function AverageChart() {
               type="monotone"
               dataKey="sessionLength"
               stroke="#FFF"
-              // activeDot={{ r: 5 }}
             />
           </LineChart>
         </>

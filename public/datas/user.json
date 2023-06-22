@@ -1,0 +1,17 @@
+{
+  "data": {
+    "id": 99,
+    "userInfos": {
+      "firstName": "Alain",
+      "lastName": "Bouchery",
+      "age": 58
+    },
+    "score": 0.45,
+    "keyData": {
+      "calorieCount": 1234,
+      "proteinCount": 78,
+      "carbohydrateCount": 123,
+      "lipidCount": 23
+    }
+  }
+}

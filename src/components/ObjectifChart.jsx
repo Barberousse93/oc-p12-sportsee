@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import { PieChart, Pie, Cell } from 'recharts'
 import colors from '../utils/colors.jsx'
 
-// const data01 = [{ value: 50 }]
-
 const Container = styled.div`
   // position: absolute;
   display: flex;
@@ -22,7 +20,6 @@ const Container = styled.div`
   grid-column: 3;
   grid-row: 2;
 `
-
 const Legende = styled.div`
   position: absolute;
   width: 260px;
@@ -35,7 +32,6 @@ const Legende = styled.div`
   justify-content: center;
   z-index: 1;
 `
-
 const LegendeValeur = styled.h3`
   font-size: 26px;
   font-weight: 700;
@@ -72,7 +68,6 @@ function ObjectifChart(data) {
           cy="50%"
           innerRadius={0}
           outerRadius={90}
-          // paddingAngle={-1}
           startAngle={0}
           endAngle={370}
         >

@@ -1,0 +1,43 @@
+{
+  "data": {
+    "userId": 99,
+    "sessions": [
+      {
+        "day": "2023-06-19",
+        "kilogram": 90,
+        "calories": 234
+      },
+      {
+        "day": "2023-06-20",
+        "kilogram": 89,
+        "calories": 234
+      },
+      {
+        "day": "2023-06-21",
+        "kilogram": 88,
+        "calories": 234
+      },
+      {
+        "day": "2023-06-22",
+        "kilogram": 87,
+        "calories": 234
+      },
+      {
+        "day": "2023-06-23",
+        "kilogram": 86,
+        "calories": 234,
+        "date": 5
+      },
+      {
+        "day": "2023-06-24",
+        "kilogram": 85,
+        "calories": 234
+      },
+      {
+        "day": "2023-06-25",
+        "kilogram": 89,
+        "calories": 234
+      }
+    ]
+  }
+}

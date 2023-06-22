@@ -45,10 +45,9 @@ const Date = styled.p`
 `
 const TooltipPerso = ({ active, payload }) => {
   if (active && payload && payload.length) {
-    // console.log('payload', payload)
     return (
       <CustomTooTip>
-        <Date>{payload[0].payload.day}</Date>
+        <Date>{payload[0].payload.date}</Date>
         <CustomTooTipLabel>{`${payload[0].payload.kilogram} Kg`}</CustomTooTipLabel>
         <CustomTooTipLabel>{`${payload[1].payload.calories} Kcal`}</CustomTooTipLabel>
       </CustomTooTip>
@@ -106,7 +105,6 @@ const LegendPerso = (props) => {
           </svg>
           <span
             className="recharts-legend-item-text"
-            // style={{ color: dico[legende.dataKey].color }}
             style={{ color: colors.textOnClear }}
           >
             {dico[legende.dataKey].value}
@@ -117,20 +115,26 @@ const LegendPerso = (props) => {
   )
 }
 
-function ActivityChart() {
+function ActivityChart({ Mock }) {
   const { ID } = useParams()
   const { data, isLoading, isError } = useFetch(
-    `http://localhost:3000/user/${ID}/activity`
+    Mock
+      ? 'http://localhost:3001/datas/activity.json'
+      : `http://localhost:3000/user/${ID}/activity`
   )
 
   if (isError) {
     return <h1>Oups !! Il y a eu un problème...</h1>
   }
 
-  const Datas = { ...data.sessions }
+  if (!data) return
 
-  Object.entries(Datas).map((item, index) => {
-    item[1].date = index + 1
+  const Datas =
+    data && data.sessions ? JSON.parse(JSON.stringify(data.sessions)) : []
+
+  Datas.map((item, index) => {
+    item.date = item.day
+    item.day = index + 1
   })
 
   return (
@@ -143,14 +147,13 @@ function ActivityChart() {
           <BarChart
             width={840}
             height={320}
-            data={data.sessions}
-            // data={Datas}
+            data={Datas}
             margin={{
               top: 20,
               bottom: 5,
             }}
           >
-            <XAxis dataKey="date" />
+            <XAxis dataKey="day" />
             <YAxis yAxisId="left" orientation="left" stroke={colors.primary} />
             <YAxis
               yAxisId="right"
@@ -160,9 +163,6 @@ function ActivityChart() {
             <Tooltip content={<TooltipPerso />} />
             <Legend
               content={<LegendPerso />}
-              // iconType="circle"
-              // iconSize={10}
-              // align="right"
               verticalAlign="top"
               height={30}
             />
