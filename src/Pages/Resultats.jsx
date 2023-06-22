@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import Loader from '../utils/Loader.jsx'
 import { useFetch } from '../utils/Hooks/index.jsx'
@@ -11,7 +11,6 @@ import AverageChart from '../components/AverageChart.jsx'
 import ActivityChart from '../components/ActivityChart.jsx'
 
 // Passer à 'true' pour utiliser les données mockées
-const Mock = false
 
 const Container = styled.div`
   position: relative;
@@ -42,6 +41,10 @@ const StyledH1 = styled.h1`
 `
 const StyledFirstName = styled.span`
   color: ${colors.secondary};
+  ${(props) =>
+    props.Mock &&
+    `color:#FFF;
+      background-color:${colors.secondary};`}
 `
 const StyledUL = styled.ul`
   display: flex;
@@ -57,6 +60,7 @@ const StyledLI = styled.li`
 `
 
 function Resultats() {
+  const [Mock, setMock] = useState(false)
   const { ID } = useParams()
 
   const navigate = useNavigate()
@@ -74,6 +78,9 @@ function Resultats() {
   const compteur = data.keyData
   const todayScore = data.todayScore ? data.todayScore * 100 : data.score * 100
 
+  const ToggleMock = () => {
+    setMock(!Mock)
+  }
   return (
     <Container>
       {isLoading ? (
@@ -82,7 +89,10 @@ function Resultats() {
         <>
           <StyledH1>
             Bonjour
-            <StyledFirstName> {data.userInfos.firstName}</StyledFirstName>
+            <StyledFirstName onClick={ToggleMock} Mock={Mock}>
+              {' '}
+              {data.userInfos.firstName}
+            </StyledFirstName>
           </StyledH1>
           <DashBoard>
             <StyledUL>

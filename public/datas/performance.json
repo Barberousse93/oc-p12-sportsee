@@ -15,15 +15,15 @@
         "kind": 1
       },
       {
-        "value": 123,
+        "value": 234,
         "kind": 2
       },
       {
-        "value": 123,
+        "value": 345,
         "kind": 3
       },
       {
-        "value": 123,
+        "value": 234,
         "kind": 4
       },
       {
@@ -31,7 +31,7 @@
         "kind": 5
       },
       {
-        "value": 123,
+        "value": 90,
         "kind": 6
       }
     ]
