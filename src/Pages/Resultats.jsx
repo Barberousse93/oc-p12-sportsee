@@ -29,11 +29,11 @@ const DashBoard = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
 `
-
 const StyledH1 = styled.h1`
   position: relative;
+  display: inline-block;
   width: 100%;
-  top: 50px;
+  // top: 50px;
   left: 150px;
   font-size: 48px;
   font-weight: 500;
@@ -41,10 +41,6 @@ const StyledH1 = styled.h1`
 `
 const StyledFirstName = styled.span`
   color: ${colors.secondary};
-  ${(props) =>
-    props.Mock &&
-    `color:#FFF;
-      background-color:${colors.secondary};`}
 `
 const StyledUL = styled.ul`
   display: flex;
@@ -57,6 +53,54 @@ const StyledUL = styled.ul`
 `
 const StyledLI = styled.li`
   list-style: none;
+`
+const SwitchLegend = styled.h3`
+  font-size: 15px;
+`
+const Bonjour = styled.div`
+  position: relative;
+  top: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`
+const ToggleBloc = styled.span`
+  width: 250px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`
+const ToggleButton = styled.span`
+  position: relative;
+  background-color: #aaa;
+  width: 45px;
+  height: 24px;
+  cursor: pointer;
+  border-radius: 30px;
+  box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+  &.active {
+    background: #f00;
+    &::before {
+      left: 21px;
+      background-color: #999;
+    }
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    background-color: #999;
+    top: 2px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: inset -2px -2px 5px rgba(0, 0, 0, 0.5),
+      inset 2px 2px 5px rgba(255, 255, 255, 0.3);
+    transition: 0.5s;
+  }
 `
 
 function Resultats() {
@@ -78,22 +122,29 @@ function Resultats() {
   const compteur = data.keyData
   const todayScore = data.todayScore ? data.todayScore * 100 : data.score * 100
 
-  const ToggleMock = () => {
-    setMock(!Mock)
-  }
   return (
     <Container>
       {isLoading ? (
         <Loader />
       ) : (
         <>
-          <StyledH1>
-            Bonjour
-            <StyledFirstName onClick={ToggleMock} Mock={Mock}>
-              {' '}
-              {data.userInfos.firstName}
-            </StyledFirstName>
-          </StyledH1>
+          <Bonjour>
+            <StyledH1>
+              Bonjour
+              <StyledFirstName> {data.userInfos.firstName}</StyledFirstName>
+            </StyledH1>
+            <ToggleBloc>
+              <ToggleButton
+                onClick={() => {
+                  setMock(!Mock)
+                }}
+                className={Mock ? 'active' : null}
+              ></ToggleButton>
+              <SwitchLegend>
+                {Mock ? 'Données mockées' : 'Données du Back-End'}
+              </SwitchLegend>
+            </ToggleBloc>
+          </Bonjour>
           <DashBoard>
             <StyledUL>
               {Object.entries(compteur).map(([label, valeur], index) => (
