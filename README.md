@@ -1,4 +1,4 @@
-Parcours "Développeur Front-End - RE1CT
+Parcours "Développeur Front-End - REACT
 # Projet 12 : Développez un tableau de bord d'analytics avec React
 
 Environnement de développement mis en place avec :  [Create React App](https://github.com/facebook/create-react-app).
