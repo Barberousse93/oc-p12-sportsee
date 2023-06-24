@@ -5,7 +5,8 @@ Environnement de développement mis en place avec :  [Create React App](https://
 
 Technologies utilisées : 
 - HTML 5
-- REACT
-- REACT REACT ROUTER
-- STYLED-COMPONENTS
-- REACHART
+- REACT (18.2.0)
+- REACT ROUTER (6.12.1)
+- STYLED-COMPONENTS (6.0.0-rc.3)
+- REACHART (2.6.2)
+
