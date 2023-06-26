@@ -26,7 +26,10 @@ const StyledDiv = styled.div`
   align-items: center;
   justify-content: center;
 `
-
+/**
+ * Page provisoire pour sélectionner les utilsateurs sans avoir à intervenir dans la barre d'addresse
+ * @returns Menu 
+ */
 function Menu() {
   return (
     <StyledDiv>

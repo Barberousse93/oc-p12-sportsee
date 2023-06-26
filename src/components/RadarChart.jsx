@@ -18,7 +18,6 @@ const Container = styled.div`
   grid-column: 2;
   grid-row: 2;
 `
-
 const dicoAnglaisFrancais = {
   1: { categorie: 'Cardio' },
   2: { categorie: 'Energie' },
@@ -28,6 +27,11 @@ const dicoAnglaisFrancais = {
   6: { categorie: 'Intensité' },
 }
 
+/**
+ * Graphique radar - RECHARTS
+ * @param {boolean} Mock 
+ * @returns compRadarChart
+ */
 function compRadarChart({ Mock }) {
   const { ID } = useParams()
   const { data, isLoading, isError } = useFetch(

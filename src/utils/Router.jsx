@@ -5,6 +5,11 @@ import Resultats from '../Pages/Resultats.jsx'
 import Erreur404 from '../Pages/Erreur404.jsx'
 import WIP from '../Pages/WIP.jsx'
 
+
+/**
+ * paramètrage des routes - REACT ROUTER
+ * @returns Router
+ */
 function Router() {
   return (
     <Routes>

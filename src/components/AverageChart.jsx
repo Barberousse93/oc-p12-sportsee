@@ -50,6 +50,11 @@ const transcriptionJour = {
   7: { jour: 'D' },
 }
 
+/**
+ * 
+ * @param {boolean} Mock  
+ * @returns AverageChart
+ */
 function AverageChart({ Mock }) {
   const { ID } = useParams()
   const { data, isLoading, isError } = useFetch(

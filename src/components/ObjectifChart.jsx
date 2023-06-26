@@ -51,7 +51,11 @@ const Score = styled.h2`
   font-weight: 500;
   color: ${colors.textOnClear};
 `
-
+/**
+ * Graphique objectif - RECHARTS
+ * @param {object} data 
+ * @returns ObjectifChart
+ */
 function ObjectifChart(data) {
   const pieData = [{ value: data.score }]
   return (

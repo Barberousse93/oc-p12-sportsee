@@ -28,6 +28,11 @@ const StyledLink = styled(Link)`
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
   }
 `
+
+/**
+ * Page WIP atrribuée à tous les liens inactifs
+ * @returns WIP
+ */
 function WIP() {
   return (
     <Container>

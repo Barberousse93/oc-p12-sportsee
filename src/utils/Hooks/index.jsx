@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react'
 
+/**
+ * Hook 
+ * @param {string} url 
+ * @returns {{data: Array, isLoading: boolean, isError:boolean}}
+ */
 export function useFetch(url) {
   const [data, setData] = useState({})
   const [isLoading, setLoading] = useState(true)

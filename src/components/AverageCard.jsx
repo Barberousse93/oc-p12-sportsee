@@ -37,7 +37,11 @@ const Icone = styled.img`
   width: 60px;
   height: 60px;
 `
-
+/**
+ * 
+ * @param {object} donnees 
+ * @returns AverageCard
+ */
 function AverageCard(donnees) {
   const dico = {
     calorieCount: {

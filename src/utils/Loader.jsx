@@ -45,7 +45,10 @@ const Ext = styled.div`
     margin: 20px;
   }
 `
-
+/**
+ * 
+ * @returns Loader
+ */
 function Loader() {
   return (
     <Container data-testid="loader">

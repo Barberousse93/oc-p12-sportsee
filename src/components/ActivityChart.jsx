@@ -43,6 +43,11 @@ const Date = styled.p`
   font-style: italic;
   color: ${colors.textOnDark};
 `
+/**
+ * tooltip personnalisé - RECHARTS
+ * @param {{active: boolean , payload: object }} 
+ * @returns CustomTooTip
+ */
 const TooltipPerso = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
@@ -56,6 +61,11 @@ const TooltipPerso = ({ active, payload }) => {
   return null
 }
 
+/**
+ * Légende personnalisée - RECHARTS
+ * @param {{payload: object}} props 
+ * @returns 
+ */
 const LegendPerso = (props) => {
   const dico = {
     kilogram: { value: 'Poids (kg)', color: colors.primary },
@@ -114,6 +124,12 @@ const LegendPerso = (props) => {
     </ul>
   )
 }
+
+/**
+ * Graphiques des activités : poids et calories brulées
+ * @param {boolean} Mock origine des données : false : Backend ; true : données mockées 
+ * @returns ActivityChart
+ */
 
 function ActivityChart({ Mock }) {
   const { ID } = useParams()

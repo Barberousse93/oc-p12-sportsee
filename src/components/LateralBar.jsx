@@ -36,6 +36,11 @@ const StyledNav = styled.nav`
   justify-content: space-between;
   top: 30%;
 `
+
+/**
+ * Barre latérale avec menu de navigation
+ * @returns LateralBar
+ */
 const LateralBar = () => {
   return (
     <Container>

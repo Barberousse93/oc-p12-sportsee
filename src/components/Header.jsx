@@ -27,7 +27,10 @@ const StyledLink = styled(Link)`
 
   color: ${colors.textOnDark};
 `
-
+/**
+ * Entête de page avec barre de navigation
+ * @returns Header
+ */
 function Header() {
   return (
     <Container>

@@ -1,3 +1,7 @@
+/**
+ * Charte graphique du site
+ */
+
 const colors = {
   primary: '#020203',
   // primary: 'blue',

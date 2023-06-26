@@ -10,8 +10,6 @@ import RadarChart from '../components/RadarChart.jsx'
 import AverageChart from '../components/AverageChart.jsx'
 import ActivityChart from '../components/ActivityChart.jsx'
 
-// Passer à 'true' pour utiliser les données mockées
-
 const Container = styled.div`
   position: relative;
   display: flex;
@@ -102,7 +100,10 @@ const ToggleButton = styled.span`
     transition: 0.5s;
   }
 `
-
+/**
+ * Page des résultats. Regroupe tous les graphiques
+ * @returns Resultats
+ */
 function Resultats() {
   const [Mock, setMock] = useState(false)
   const { ID } = useParams()

@@ -32,7 +32,10 @@ const Oups = styled.h1`
   position: relative;
   top: 50px;
 `
-
+/**
+ * Page erreur 404
+ * @returns Erreur404
+ */
 function Erreur404() {
   return (
     <Container>
