@@ -117,20 +117,7 @@ function Resultats() {
   }
 
   const compteur = data.keyData
-  // const todayScore = data.todayScore ? data.todayScore * 100 : data.score * 100
-
-  console.log('data', data)
-  console.log('data.score', data.score)
-  let todayScore = 0
-
-  if (data.todayScore) {
-    console.log('todayScore', data.todayScore)
-    todayScore = data.todayScore * 100
-  } else if (data.score) {
-    console.log('Score', data.score)
-    todayScore = data.score * 100
-  }
-  // const todayScore = data.todayScore * 100 && data.score * 100
+  const todayScore = data.todayScore ? data.todayScore * 100 : data.score * 100
 
   return (
     <Container>
