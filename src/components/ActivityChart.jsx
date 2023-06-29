@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { useParams } from 'react-router'
-import { useFetch } from '../utils/Hooks/index.jsx'
+import { getActivityInfos } from '../API/index.js'
 import Loader from '../utils/Loader.jsx'
 import colors from '../utils/colors.jsx'
 import styled from 'styled-components'
@@ -45,7 +45,7 @@ const Date = styled.p`
 `
 /**
  * tooltip personnalisé - RECHARTS
- * @param {{active: boolean , payload: object }} 
+ * @param {{active: boolean , payload: object }}
  * @returns CustomTooTip
  */
 const TooltipPerso = ({ active, payload }) => {
@@ -63,8 +63,8 @@ const TooltipPerso = ({ active, payload }) => {
 
 /**
  * Légende personnalisée - RECHARTS
- * @param {{payload: object}} props 
- * @returns 
+ * @param {{payload: object}} props
+ * @returns
  */
 const LegendPerso = (props) => {
   const dico = {
@@ -127,17 +127,13 @@ const LegendPerso = (props) => {
 
 /**
  * Graphiques des activités : poids et calories brulées
- * @param {boolean} Mock origine des données : false : Backend ; true : données mockées 
+ * @param {boolean} Mock origine des données : false : Backend ; true : données mockées
  * @returns ActivityChart
  */
 
 function ActivityChart({ Mock }) {
   const { ID } = useParams()
-  const { data, isLoading, isError } = useFetch(
-    Mock
-      ? 'http://localhost:3001/datas/activity.json'
-      : `http://localhost:3000/user/${ID}/activity`
-  )
+  const { data, isLoading, isError } = getActivityInfos(Mock, ID)
 
   if (isError) {
     return <h1>Oups !! Il y a eu un problème...</h1>
@@ -177,11 +173,7 @@ function ActivityChart({ Mock }) {
               stroke={colors.secondary}
             />
             <Tooltip content={<TooltipPerso />} />
-            <Legend
-              content={<LegendPerso />}
-              verticalAlign="top"
-              height={30}
-            />
+            <Legend content={<LegendPerso />} verticalAlign="top" height={30} />
             <Bar
               yAxisId="left"
               dataKey="kilogram"

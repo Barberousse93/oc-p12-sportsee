@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import Loader from '../utils/Loader.jsx'
-import { useFetch } from '../utils/Hooks/index.jsx'
+import { getUserInfos } from '../API/index.js'
 import styled from 'styled-components'
 import colors from '../utils/colors.jsx'
 import AverageCard from '../components/AverageCard.jsx'
@@ -110,18 +110,27 @@ function Resultats() {
 
   const navigate = useNavigate()
 
-  const { data, isLoading, isError } = useFetch(
-    Mock
-      ? `http://localhost:3001/datas/user.json`
-      : `http://localhost:3000/user/${ID}`
-  )
+  const { data, isLoading, isError } = getUserInfos(Mock, ID)
 
   if (isError || !data) {
     navigate('/error')
   }
 
   const compteur = data.keyData
-  const todayScore = data.todayScore ? data.todayScore * 100 : data.score * 100
+  // const todayScore = data.todayScore ? data.todayScore * 100 : data.score * 100
+
+  console.log('data', data)
+  console.log('data.score', data.score)
+  let todayScore = 0
+
+  if (data.todayScore) {
+    console.log('todayScore', data.todayScore)
+    todayScore = data.todayScore * 100
+  } else if (data.score) {
+    console.log('Score', data.score)
+    todayScore = data.score * 100
+  }
+  // const todayScore = data.todayScore * 100 && data.score * 100
 
   return (
     <Container>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router'
-import { useFetch } from '../utils/Hooks/index.jsx'
+import { getPerformances } from '../API/index.js'
 import Loader from '../utils/Loader.jsx'
 import { PolarGrid, RadarChart, PolarAngleAxis, Radar } from 'recharts'
 import colors from '../utils/colors.jsx'
@@ -19,6 +19,7 @@ const Container = styled.div`
   grid-row: 2;
 `
 const dicoAnglaisFrancais = {
+  0: { categorie: 'Undefined' },
   1: { categorie: 'Cardio' },
   2: { categorie: 'Energie' },
   3: { categorie: 'Endurance' },
@@ -29,16 +30,12 @@ const dicoAnglaisFrancais = {
 
 /**
  * Graphique radar - RECHARTS
- * @param {boolean} Mock 
+ * @param {boolean} Mock
  * @returns compRadarChart
  */
 function compRadarChart({ Mock }) {
   const { ID } = useParams()
-  const { data, isLoading, isError } = useFetch(
-    Mock
-      ? `http://localhost:3001/datas/performance.json`
-      : `http://localhost:3000/user/${ID}/performance`
-  )
+  const { data, isLoading, isError } = getPerformances(Mock, ID)
 
   if (isError) {
     return <h1>Oups !! Il y a eu un problème...</h1>

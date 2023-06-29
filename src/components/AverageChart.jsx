@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { useParams } from 'react-router'
-import { useFetch } from '../utils/Hooks/index.jsx'
+import { getAverageSessions } from '../API/index.js'
 import Loader from '../utils/Loader.jsx'
 import colors from '../utils/colors.jsx'
 import styled from 'styled-components'
@@ -41,6 +41,7 @@ const CustomTooTipLabel = styled.p`
   color: ${colors.textOnClear};
 `
 const transcriptionJour = {
+  0: { jour: 'X' },
   1: { jour: 'L' },
   2: { jour: 'M' },
   3: { jour: 'M' },
@@ -51,17 +52,13 @@ const transcriptionJour = {
 }
 
 /**
- * 
- * @param {boolean} Mock  
+ *
+ * @param {boolean} Mock
  * @returns AverageChart
  */
 function AverageChart({ Mock }) {
   const { ID } = useParams()
-  const { data, isLoading, isError } = useFetch(
-    Mock
-      ? `http://localhost:3001/datas/average.json`
-      : `http://localhost:3000/user/${ID}/average-sessions`
-  )
+  const { data, isLoading, isError } = getAverageSessions(Mock, ID)
 
   if (isError) {
     return <h1>Oups !! Il y a eu un problème...</h1>
@@ -100,7 +97,7 @@ function AverageChart({ Mock }) {
           <LineChart
             width={260}
             height={260}
-            data={data.sessions}
+            data={Datas}
             margin={{ top: 10, left: 10, right: 10 }}
             style={{ backgroundColor: '#F00', borderRadius: '5px' }}
           >
