@@ -179,12 +179,14 @@ function ActivityChart({ Mock }) {
               dataKey="kilogram"
               fill={colors.primary}
               maxBarSize={10}
+              radius={[10,10,10,10]}
             />
             <Bar
               yAxisId="right"
               dataKey="calories"
               fill={colors.secondary}
               maxBarSize={10}
+              radius={[10,10,10,10]}
             />
           </BarChart>
         </>

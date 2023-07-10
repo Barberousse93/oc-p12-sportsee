@@ -86,6 +86,7 @@ function ObjectifChart(data) {
           // paddingAngle={0}
           startAngle={90}
           endAngle={(360 * data.score) / 100 + 90}
+          cornerRadius={10}
         >
           <Cell fill={colors.secondary} />
         </Pie>
