@@ -166,7 +166,12 @@ function ActivityChart({ Mock }) {
             }}
           >
             <XAxis dataKey="day" />
-            <YAxis yAxisId="left" orientation="left" stroke={colors.primary} />
+            <YAxis
+              yAxisId="left"
+              orientation="left"
+              stroke={colors.primary}
+              tick={false}
+            />
             <YAxis
               yAxisId="right"
               orientation="right"

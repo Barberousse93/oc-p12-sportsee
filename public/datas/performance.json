@@ -7,7 +7,8 @@
       "3": "endurance",
       "4": "strength",
       "5": "speed",
-      "6": "intensity"
+      "6": "intensity",
+      "7": "sleeping"
     },
     "data": [
       {
@@ -33,6 +34,10 @@
       {
         "value": 90,
         "kind": 6
+      },
+      {
+        "value": 234,
+        "kind": 7
       }
     ]
   }

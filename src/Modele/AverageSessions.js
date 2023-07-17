@@ -3,35 +3,17 @@ export class AverageSessions {
     sessions
 
     constructor(data){
-        this.sessions=[{
-            "day": 0,
-            "sessionLength": 0
-        },
-        {
-            "day": 0,
-            "sessionLength": 0
-        },
-        {
-            "day": 0,
-            "sessionLength": 0
-        },
-        {
-            "day": 0,
-            "sessionLength": 0
-        },
-        {
-            "day": 0,
-            "sessionLength": 0
-        },
-        {
-            "day": 0,
-            "sessionLength": 0
-        },
-        {
-            "day": 1,
-            "sessionLength": 0
-        }]
+        this.sessions = []
 
+        if(data && data.sessions && data.sessions.length){
+            for (let i = 0; i < data.sessions.length; i++){
+                this.sessions.push({
+            day:0,
+            sessionLength: 0
+        })
+            }
+        }
+        
         if (data && data.userId){
             this.userId = data.userId
         } else {

@@ -29,6 +29,18 @@
       {
         "day": 7,
         "sessionLength": 78
+      },
+      {
+        "day": 1,
+        "sessionLength": 89
+      },
+      {
+        "day": 2,
+        "sessionLength": 0
+      },
+      {
+        "day": 3,
+        "sessionLength": 91
       }
     ]
   }

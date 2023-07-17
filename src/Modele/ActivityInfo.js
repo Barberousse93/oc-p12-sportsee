@@ -2,41 +2,18 @@ export class ActivityInfo{
     userId
     sessions
 
-    constructor(data){
-        this.sessions=[{
+    constructor(data) {
+        this.sessions = []
+        if(data && data.sessions && data.sessions.length){
+            for (let i = 0; i < data.sessions.length; i++){
+                this.sessions.push({
             day:'',
             kilogram:0,
             calories:0
-        },
-        {
-            day:'',
-            kilogram:0,
-            calories:0
-        },
-        {
-            day:'',
-            kilogram:0,
-            calories:0
-        },
-        {
-            day:'',
-            kilogram:0,
-            calories:0
-        },
-        {
-            day:'',
-            kilogram:0,
-            calories:0
-        },
-        {
-            day:'',
-            kilogram:0,
-            calories:0
-        },{
-            day:'',
-            kilogram:0,
-            calories:0
-        }]
+        })
+            }
+        }
+        
 
         if (data && data.userId){
             this.userId = data.userId

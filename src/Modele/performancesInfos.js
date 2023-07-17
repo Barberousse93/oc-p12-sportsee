@@ -4,31 +4,19 @@ export class performancesInfos {
     data
 
     constructor(data){
-        this.kind={}
-        this.data=[{
-            value:0,
-            kind:0
-        },
-        {
-            value:0,
-            kind:0
-        },
-        {
-            value:0,
-            kind:0
-        },
-        {
-            value:0,
-            kind:0
-        },
-        {
-            value:0,
-            kind:0
-        },
-        {
-            value:0,
-            kind:0
-        }]
+        this.kind = {}
+        if (data && data.kind) {
+            console.log (data.kind)
+        }
+        this.data=[]
+        if (data && data.data && data.data.length) {
+            for (let i = 0; i < data.data.length; i++) {
+                this.data.push({
+                value:0,
+                kind:0
+                })
+            }
+        }
 
         if (data && data.userId){
             this.userId = data.userId

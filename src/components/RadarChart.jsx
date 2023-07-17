@@ -26,6 +26,7 @@ const dicoAnglaisFrancais = {
   4: { categorie: 'Force' },
   5: { categorie: 'Vitesse' },
   6: { categorie: 'Intensité' },
+  7: { categorie: 'Repos' },
 }
 
 /**

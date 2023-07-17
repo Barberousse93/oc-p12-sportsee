@@ -37,6 +37,16 @@
         "day": "2023-06-25",
         "kilogram": 89,
         "calories": 123
+      },
+      {
+        "day": "2023-06-26",
+        "kilogram": 90,
+        "calories": 234
+      },
+      {
+        "day": "2023-06-27",
+        "kilogram": 91,
+        "calories": 345
       }
     ]
   }
